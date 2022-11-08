@@ -26,9 +26,21 @@ class EmployeController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $employe_id = $request->get('employe_id');
+        $first_name = $request->get('first_name');
+        $last_name = $request->get('last_name');
+        $departament = $request->get('departament');
+
+        $employes = Employe::orderBy('id', 'desc')
+        ->employe($employe_id)
+        ->firstname($first_name)
+        ->lastname($last_name)
+        ->departament($departament)
+        ->paginate(4);
+
+        return view('dashboard', compact('employes'));
     }
 
     /**

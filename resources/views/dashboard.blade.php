@@ -4,16 +4,51 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
+    <div class="container">
+        <div class="row">
+            <div class="col-md -12 ">
+                <div class="page-header">
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="py-12">
+
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+<!-- search employees -->
+                <h1>
+                    Search
+                    {{Form::open(['route' => 'employes.index', 'method' => 'GET', 'class' => 'form-inline'])}}
+                    <div class="inline-flex">
+                        {{Form::text('employe_id', null, ['class' => 'form-control', 'placeholder' => 'Employe ID'])}}
+                    </div>
+                    <div class="inline-flex">
+                        {{Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => 'First Name'])}}
+                    </div>
+                    <div class="inline-flex">
+                        {{Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => 'Last Name'])}}
+                    </div>
+
+                    <div class="inline-flex">
+                        {{Form::text('departament', null, ['class' => 'form-control', 'placeholder' => 'Departament'])}}
+                    </div>
+                    <div class="inline-flex">
+                        {{Form::submit('Search', ['class' => 'btn btn-default'])}}
+                    </div>
+                    {{Form::close()}}
+                </h1>
+<!-- end search employees -->
                 <a type="button" href="" style="background-color:black; float: right;" class=" px-12 py-2 rounded text-gray-200 font-semibold hover:bg-indigo-800 transition duration-200 each-in-out">New employee</a>
 
                 <table class="table-auto w-full">
                     <thead>
                         <tr class="bg-blue-700 text-white">
-                            <th  class="px-4 py-2">Employe ID</th>
+                            <th class="px-4 py-2">Employe ID</th>
                             <th class="px-4 py-2">Firstname</th>
                             <th class="border px-4 py-2">Lastname</th>
                             <th class="border px-4 py-2">Departament</th>
@@ -24,14 +59,14 @@
                     </thead>
                     <tbody>
                         <!-- TABLE  -->
+                        @foreach ($employes as $employe)
                         <tr>
-                            <td style="display: none;">sdfsfsf</td>
-                            <td>sdfsdfsdfs</td>
+                            <td class="border px-4 py-2">{{$employe->employe_id}}</td>
 
-                            <td class="border px-4 py-2">sdfsdfsdfsd</td>
-                            <td class="border px-4 py-2">sdfsdfsdfsdf</td>
-                            <td class="border px-4 py-2">dsfsdfsdfvcc</td>
-                            <td class="border px-4 py-2">dsfsdfsdfvcc</td>
+                            <td class="border px-4 py-2">{{$employe->first_name}}</td>
+                            <td class="border px-4 py-2">{{$employe->last_name}}</td>
+                            <td class="border px-4 py-2">{{$employe->departament}}</td>
+                            <td class="border px-4 py-2">25</td>
 
 
                             <td class="border px-4 py-2">
@@ -76,12 +111,12 @@
                                 </div>
                             </td>
                         </tr>
-                    
+                    @endforeach
                     </tbody>
 
                 </table>
                 <div>
-                    <!--  -->
+                {!! $employes->links() !!}
                 </div>
 
             </div>
