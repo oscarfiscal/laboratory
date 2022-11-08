@@ -21,9 +21,10 @@ class EmployeController extends Controller
        $file = $request->file('document');
        Excel::import(new EmployeImport, $file);
        Alert::success('Success', 'successfully saved employees');
-        return back();
+       /* retun home */
+         return redirect()->route('dashboard');
     }
-    
+
 
     public function index()
     {

@@ -25,5 +25,9 @@ Route::get('/dashboard', function () {
 
 Route::post('/import', [EmployeController::class, 'import'])->name('import');
 
+Route::get('/upload', function () {
+    return view('upload');
+})->middleware(['auth', 'verified'])->name('upload');
+
 require __DIR__.'/auth.php';
 
