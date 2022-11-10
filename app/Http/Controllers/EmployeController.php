@@ -108,4 +108,22 @@ class EmployeController extends Controller
     {
         //
     }
+
+    public function history(Request $request)
+    {
+        $employe_id = $request->get('employe_id');
+
+        /* buscar employe */
+        $employe = Employe::where('employe_id', $employe_id)->first();
+
+        /* si existe envielo a tura */
+        if($employe){
+            return view('history', compact('employe'));
+        }else{
+            /* si no muestrele un mensaje  */
+            Alert::error('Error', 'Employee not found');
+            return back();
+
+    }
+    }
 }

@@ -29,5 +29,13 @@ Route::get('/upload', function () {
 
 Route::get('/employes', [EmployeController::class, 'index'])->name('employes.index');
 
+Route::get('/auth', function () {
+    return view('login');
+})->name('auth');
+
+Route::get('/history', function () {
+    return view('history');
+})->middleware('LastLogin')->name('employe.history');
+
 require __DIR__.'/auth.php';
 
